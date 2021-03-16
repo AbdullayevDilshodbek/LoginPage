@@ -5,7 +5,7 @@ import Login from '../views/Login.vue'
 import Main from "../views/Main";
 import FullViewPage from "../views/FullViewPage/FullViewPage";
 import NotFound from "../views/FullViewPage/NotFound";
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 const routes = [
   {
