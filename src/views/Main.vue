@@ -1,58 +1,72 @@
 <template>
-    <v-app>
-        <v-app-bar app color="primary" dark>
-            <div class="d-flex align-center">
-                <v-img
-                        alt="Vuetify Logo"
-                        class="shrink mr-2"
-                        contain
-                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-                        transition="scale-transition"
-                        width="40"
-                />
-
-                <v-img
-                        alt="Vuetify Name"
-                        class="shrink mt-1 hidden-sm-and-down"
-                        contain
-                        min-width="100"
-                        src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-                        width="100"
-                />
-            </div>
-
-            <v-spacer></v-spacer>
-            <v-btn text @click="logout">Logout</v-btn>
-            <v-btn
-                    href="https://github.com/vuetifyjs/vuetify/releases/latest"
-                    target="_blank"
-                    text
-            >
-                <span class="mr-2">Latest Release</span>
-                <v-icon>mdi-open-in-new</v-icon>
-            </v-btn>
-        </v-app-bar>
-        <v-main>
-            <router-view/>
-        </v-main>
+    <v-app id="inspire">
+      <v-system-bar app>
+        <v-spacer></v-spacer>
+  
+        <v-icon>mdi-square</v-icon>
+  
+        <v-icon>mdi-circle</v-icon>
+  
+        <v-icon>mdi-triangle</v-icon>
+      </v-system-bar>
+  
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+      >
+        <v-sheet
+          color="grey lighten-4"
+          class="pa-4"
+        >
+          <v-avatar
+            class="mb-4"
+            color="grey darken-1"
+            size="64"
+          ></v-avatar>
+  
+          <div>john@vuetifyjs.com</div>
+        </v-sheet>
+  
+        <v-divider></v-divider>
+  
+        <v-list>
+          <v-list-item
+            v-for="[icon, text, url] in links"
+            :key="icon"
+            link
+            :to="url"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ icon }}</v-icon>
+            </v-list-item-icon>
+  
+            <v-list-item-content>
+              <v-list-item-title>{{ text }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-navigation-drawer>
+  
+      <v-main>
+        <v-container
+          class="py-8 px-6"
+          fluid
+        >
+            <router-view></router-view>
+        </v-container>
+      </v-main>
     </v-app>
-</template>
-
-<script>
-    import {mapActions} from "vuex";
-
+  </template>
+  
+  <script>
     export default {
-        name: "Main",
-        methods: {
-            ...mapActions('auth',['requestToken']),
-            logout(){
-                localStorage.removeItem('user')
-                this.$router.push('/login')
-            }
-        }
+      data: () => ({
+        cards: [],
+        drawer: null,
+        links: [
+          ['mdi-inbox-arrow-down', 'Home', '/'],
+          ['mdi-plus', 'About', '/about'],
+        ],
+      }),
     }
-</script>
-
-<style scoped>
-
-</style>
+  </script>

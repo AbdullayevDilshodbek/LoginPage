@@ -4,9 +4,10 @@
         <v-card outlined width="500" class="mx-auto" style="margin-top: 20vh">
             <v-card-title style="background-color: #499C54; color: beige">Login</v-card-title>
             <v-card-text>
-                <v-card-text>
                     <v-text-field dense label="Username" outlined v-model="user.username"
-                                  autofocus prepend-icon="mdi-account"
+                                  autofocus 
+                                  style="margin-top: 20px;"
+                                  prepend-icon="mdi-account"
                     ></v-text-field>
                     <v-text-field v-model="user.password"
                                   @click:append="show_password" prepend-icon="mdi-lock"
@@ -32,8 +33,8 @@
             return {
                 eye: false,
                 user: {
-                    username: 'ishonch',
-                    password: '123'
+                    username: 'don',
+                    password: 'test123'
                 },
                 snackbar: {
                     show: false,
